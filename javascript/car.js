@@ -12,13 +12,38 @@ class Car {
     this.maxSpeed = 3;
     this.angle = 0;
 
-    this.sensor = new Sensor(this)
+    this.sensor = new Sensor(this);
     this.controls = new Controls();
   }
 
   update(roadBorders) {
     this.#move();
-    this.sensor.update(roadBorders)
+    this.polygon = this.#createdPolygon()
+    this.sensor.update(roadBorders);
+  }
+
+  #createdPolygon() {
+    const points = [];
+    const rad = Math.hypot(this.width, this.height) / 2;
+    const alpha = Math.atan2(this.width, this.height) / 2;
+    points.push({
+      x: this.x - Math.sin(this.angle - alpha) * rad,
+      y: this.y - Math.sin(this.angle - alpha) * rad,
+    });
+    points.push({
+      x: this.x - Math.sin(this.angle + alpha) * rad,
+      y: this.y - Math.sin(this.angle + alpha) * rad,
+    });
+    points.push({
+      x: this.x - Math.sin(Math.PI + this.angle - alpha) * rad,
+      y: this.y - Math.sin(Math.PI + this.angle - alpha) * rad,
+    });
+    points.push({
+      x: this.x - Math.sin(Math.PI + this.angle + alpha) * rad,
+      y: this.y - Math.sin(Math.PI + this.angle + alpha) * rad,
+    });
+
+    return points
   }
 
   #move() {
@@ -77,6 +102,6 @@ class Car {
 
     ctx.restore();
 
-    this.sensor.draw(ctx)
+    this.sensor.draw(ctx);
   }
 }
