@@ -19,20 +19,26 @@ class Car {
     this.controls = new Controls(controlType);
   }
 
-  update(roadBorders) {
+  update(roadBorders, traffic) {
     if (!this.damage) {
       this.#move();
       this.polygon = this.#createPolygon();
-      this.damage = this.#assessDamage(roadBorders);
+      this.damage = this.#assessDamage(roadBorders, traffic);
     }
     if (this.sensor) {
-      this.sensor.update(roadBorders);
+      this.sensor.update(roadBorders, traffic);
     }
   }
 
-  #assessDamage(roadBorders) {
+  #assessDamage(roadBorders, traffic) {
     for (let i = 0; i < roadBorders.length; i++) {
       if (polyIntersect(this.polygon, roadBorders[i])) {
+        return true;
+      }
+    }
+
+    for (let i = 0; i < traffic.length; i++) {
+      if (polyIntersect(this.polygon, traffic[i].polygon)) {
         return true;
       }
     }
