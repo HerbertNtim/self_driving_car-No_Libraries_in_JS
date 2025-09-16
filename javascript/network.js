@@ -1,7 +1,7 @@
 class NeuralNetwork {
   constructor(neuronCounts) {
     this.levels = [];
-    for (let i = 0; i < neuronCounts.length; i++) {
+    for (let i = 0; i < neuronCounts.length - 1; i++) {
       this.levels.push(new Level(neuronCounts[i], neuronCounts[i + 1]));
     }
   }
@@ -54,7 +54,11 @@ class Level {
         sum += level.inputs[j] * level.weights[j][i];
       }
 
-      sum > level.biases[i] ? (level.outputs = 1) : (level.outputs = 0);
+      if (sum > level.biases[i]) {
+        level.outputs[i] = 1;
+      } else {
+        level.outputs[i] = 0;
+      }
     }
 
     return level.outputs;
