@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Self Driving Car - No Libraries</title>
-</head>
-<body>
-  <canvas id="carCanvas"></canvas>
-  <canvas id="networkCanvas"></canvas>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Self Driving Car - No Libraries</title>
+  </head>
+  <body>
+    <canvas id="carCanvas"></canvas>
 
-  <script src="/javascript/visualizer.js"></script>
-  <script src="/javascript/network.js"></script>
-  <script src="/javascript/sensor.js"></script>
-  <script src="/javascript/utils.js"></script>
-  <script src="/javascript/road.js"></script>
-  <script src="/javascript/controls.js"></script>
-  <script src="/javascript/car.js"></script>
-  <script src="/javascript/main.js"></script>
-</body>
+    <div id="verticalButtons">
+      <button onclick="save()">💾</button>
+      <button onclick="discard()">🗑️</button>
+    </div>
+
+    <canvas id="networkCanvas"></canvas>
+
+    <script src="/javascript/visualizer.js"></script>
+    <script src="/javascript/network.js"></script>
+    <script src="/javascript/sensor.js"></script>
+    <script src="/javascript/utils.js"></script>
+    <script src="/javascript/road.js"></script>
+    <script src="/javascript/controls.js"></script>
+    <script src="/javascript/car.js"></script>
+    <script src="/javascript/main.js"></script>
+  </body>
 </html>
